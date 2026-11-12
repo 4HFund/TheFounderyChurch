@@ -155,5 +155,32 @@
 
 </footer>
 
+<style id="mission-interest-styles">
+.mi-trigger{position:fixed;right:18px;bottom:18px;z-index:990;border:0;border-radius:999px;padding:14px 20px;background:#d9a64c;color:#14271e;font:700 14px system-ui;box-shadow:0 8px 28px #0005;cursor:pointer}
+.mi-overlay[hidden]{display:none!important}.mi-overlay{position:fixed;inset:0;z-index:9999;background:#06130dcc;display:grid;place-items:center;padding:16px}
+.mi-dialog{position:relative;background:#f9f5e9;color:#19291f;border-radius:18px;width:min(550px,100%);max-height:min(90dvh,820px);overflow-y:auto;padding:clamp(20px,4vw,35px);font:15px/1.5 system-ui;box-shadow:0 24px 70px #0008}
+.mi-dialog h2{font:600 clamp(27px,5vw,38px)/1.15 Georgia,serif;margin:5px 35px 9px 0}.mi-dialog p{margin:0 0 16px}.mi-dialog label{display:block;margin:12px 0 5px;font-weight:650}.mi-dialog input:not([type=checkbox]),.mi-dialog textarea{display:block;width:100%;border:1px solid #a8b3a9;border-radius:8px;padding:11px;background:white;color:#14271e;font:inherit}.mi-dialog fieldset{border:0;padding:0;margin:16px 0}.mi-dialog legend{font-weight:700;margin-bottom:7px}.mi-dialog .mi-choice{display:flex;gap:10px;align-items:flex-start;border:1px solid #d7d7c9;padding:10px;border-radius:9px;margin:7px 0;font-weight:500}.mi-choice input{margin-top:5px}.mi-dialog button[type=submit]{width:100%;background:#173e2e;color:white;border:0;border-radius:8px;padding:14px;font:700 15px system-ui;cursor:pointer;margin-top:15px}.mi-close{position:absolute;right:17px;top:13px;border:0;background:transparent;color:#263d30;font-size:29px;cursor:pointer}.mi-note{font-size:12px;color:#56665b;margin-top:12px!important}.mi-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8b5a22;font-weight:800}.mi-dialog :focus-visible,.mi-trigger:focus-visible{outline:3px solid #d9a64c;outline-offset:3px}
+</style><button class="mi-trigger" id="mi-open" type="button">Get Involved in Missions</button>
+<div class="mi-overlay" id="mi-overlay" hidden><section class="mi-dialog" role="dialog" aria-modal="true" aria-labelledby="mi-title">
+<button class="mi-close" id="mi-close" type="button" aria-label="Close mission interest form">×</button>
+<div class="mi-eyebrow">The Foundery Church · Missions</div><h2 id="mi-title">Feet to Go &amp; Hands to Serve</h2>
+<p>Be part of what God is doing through The Foundery. Tell us where you might like to serve.</p>
+<form action="https://formsubmit.co/office@thefoundery.church" method="POST" id="mi-form">
+<input type="hidden" name="_subject" value="New Foundery Mission Interest Submission">
+<input type="hidden" name="_captcha" value="true">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="Source website" value="">
+<fieldset><legend>I'm interested in (check all that apply)</legend>
+<label class="mi-choice"><input type="checkbox" name="Local Missions" value="Serving in our community"> Local Missions — Serving in our community</label>
+<label class="mi-choice"><input type="checkbox" name="National Missions" value="U.S. trips (2027)"> National Missions — U.S. trips (2027)</label>
+<label class="mi-choice"><input type="checkbox" name="International Missions" value="Liberia (2028)"> International Missions — Liberia (2028)</label>
+</fieldset>
+<label for="mi-name">Your name *</label><input id="mi-name" name="Name" required autocomplete="name" maxlength="120">
+<label for="mi-phone">Phone number</label><input id="mi-phone" name="Phone" type="tel" autocomplete="tel" maxlength="40">
+<label for="mi-email">Email address *</label><input id="mi-email" name="Email" type="email" required autocomplete="email" maxlength="200">
+<label for="mi-skills">My gifts, skills, or abilities</label><textarea id="mi-skills" name="Gifts skills or abilities" rows="3" maxlength="2000"></textarea>
+<p class="mi-note">This is simply an interest form, not a commitment to participate. Your information will be sent to The Foundery Church office.</p>
+<button type="submit">Send My Interest</button></form></section></div>
+<script id="mission-interest-script">(function(){const open=document.getElementById('mi-open'),overlay=document.getElementById('mi-overlay'),close=document.getElementById('mi-close'),form=document.getElementById('mi-form');let prior=null;function show(){prior=document.activeElement;overlay.hidden=false;document.body.style.overflow='hidden';close.focus()}function hide(){overlay.hidden=true;document.body.style.overflow='';if(prior)prior.focus()}open.addEventListener('click',show);close.addEventListener('click',hide);overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});document.addEventListener('keydown',e=>{if(overlay.hidden)return;if(e.key==='Escape')hide();if(e.key==='Tab'){const els=[...overlay.querySelectorAll('button,input,textarea')].filter(el=>!el.disabled);const first=els[0],last=els[els.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});form.querySelector('[name="Source website"]').value=location.hostname;form.addEventListener('submit',e=>{if(!form.querySelector('input[type=checkbox]:checked')){e.preventDefault();alert('Please choose at least one mission interest.')}})})();</script>
 </body>
 </html>
